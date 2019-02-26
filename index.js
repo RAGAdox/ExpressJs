@@ -10,9 +10,12 @@ const app=express();
 
 //Init middleware
 app.use(logger)
-
+//Body Parser middleware
+app.use(express.json());
+app.use(express.urlencoded({extended:false}));
 //Set Static Folder
 app.use(express.static(path.join(__dirname,'public')));
+//Setting routes
 app.use('/api/members',require('./routes/api/membersApi'));
 const PORT=process.env.PORT || 5000;
 app.listen(PORT,()=>console.log('Server is running on PORT '+PORT));
